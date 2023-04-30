@@ -151,9 +151,50 @@ printer(value)
 value = value.shape
 printer(value)
 
-# добавляет ось
+# добавляет ось в начало
 value = np.arange(32).reshape(8, 2, 2)
 printer(value)
 value = np.expand_dims(value, axis=0)
 value = value.shape
 printer(value)
+
+# # удаление оси
+# c = np.squeeze(value, axis=0)
+# printer(value)
+#
+# # нормальное добавление оси
+# c = value[np.newaxis, :, np.newaxis]  # двоеточие это данные, а np.newaxis там где нужна ось
+# printer(value)
+
+"""
+    Объединение массивов 
+"""
+
+a = np.array([(1, 2), (3, 4)])
+b = np.array([(5, 6), (7, 8)])
+aa = np.fromiter(range(18), dtype='int32')
+# объединение по горизонтали (создает новый массив)
+con = np.hstack([a, b])
+# объединение по вертикали (создает новый массив)
+con_one = np.vstack([a, b])
+printer(con)
+printer(con_one)
+
+# объединение по колонкам (создает новый массив)
+con = np.column_stack([a, b])
+printer(con)
+# объединение по горизонтальным колонкам (создает новый массив)
+con = np.row_stack([a, b])
+printer(con)
+
+# объединение данных в один массив по строке
+con = np.r_[aa, 1, 223, [1, 2, 3]]
+printer(con)
+con = np.r_[np.array([1, 2, 3]), np.array([1, 2, 3])]
+printer(con)
+con = np.r_[[(1, 2), (3, 4)], [(5, 6)]]
+printer(con)
+
+# объединение данных в один массив по столбцу
+con = np.c_[[3, 2, 1], [1, 2, 3]]
+printer(con)
